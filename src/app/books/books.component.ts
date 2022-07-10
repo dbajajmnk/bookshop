@@ -7,6 +7,7 @@ import Book from '../model/book';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  isShowing:boolean =false;
 
   books:Book[] = [
     {name:"A",
@@ -23,9 +24,12 @@ export class BooksComponent implements OnInit {
    }
 
   ]
-  constructor() { }
+  constructor() { 
+    console.log("I am Books Constructor")
+  }
 
   ngOnInit(): void {
+    console.log("Init Value for Books NgOnInit")
   }
   addToCart(event:Book)
   {

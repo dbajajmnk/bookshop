@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import Book from '../model/book';
 
 @Component({
@@ -6,19 +6,30 @@ import Book from '../model/book';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent implements OnInit {
+export class BookComponent implements OnInit,OnDestroy {
 
  @Input() book:Book={} as Book
+ myInterval:any = null;
  @Output() bookEmitter = new  EventEmitter<Book>();
-  constructor() { }
+  constructor() {
+    console.log("Constructor Called");
+
+   }
+  ngOnDestroy(): void {
+    console.log("I am Destroyed")
+    clearInterval(this.myInterval)
+  }
   ngOnInit(): void {
+    console.log("NgOnInit")
+    this.myInterval = setInterval(()=>{
+      console.log("hello")
+    },1000)
   }
 
   addToCart()
   {
     this.bookEmitter.emit(this.book)
   }
- 
   
 
 }
