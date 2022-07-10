@@ -27,6 +27,10 @@ export class BooksComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  addToCart(event:Book)
+  {
+    console.log(event);
+  }
 
 }
 
