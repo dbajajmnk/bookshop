@@ -1,0 +1,21 @@
+ ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+li{
+    text-overflow: ellipsis;
+    width: 25%;
+    text-align: center;
+    cursor:pointer;
+
+}
+.title {
+
+}
+.sno{
+
+}
+.currency{
+
+}
