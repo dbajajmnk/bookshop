@@ -3,9 +3,10 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppCompontnet } from "./app.compontent";
 import { BooksModule } from "./books/books.module";
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-    declarations:[AppCompontnet],
+    declarations:[AppCompontnet, CartComponent],
     imports:[BrowserModule,FormsModule,BooksModule],
     bootstrap:[AppCompontnet]
     

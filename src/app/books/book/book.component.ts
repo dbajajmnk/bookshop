@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import Book from 'src/app/model/book';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -8,29 +9,31 @@ import Book from 'src/app/model/book';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit,OnDestroy {
+  isAdded:boolean=false
 
  @Input() book:Book={} as Book
- myInterval:any = null;
- @Output() bookEmitter = new  EventEmitter<Book>();
-  constructor() {
-    console.log("Constructor Called");
+  constructor(private cartService:CartService) {
+    
 
    }
   ngOnDestroy(): void {
-    console.log("I am Destroyed")
-    clearInterval(this.myInterval)
+   
   }
   ngOnInit(): void {
-    console.log("NgOnInit")
-    this.myInterval = setInterval(()=>{
-      console.log("hello")
-    },1000)
+   
+   
   }
 
   addToCart()
   {
-    this.bookEmitter.emit(this.book)
+    console.log(this.book);
+    this.isAdded=true;
+    this.cartService.addBook(this.book);
   }
-  
+  removeFromCart()
+  {
+      this.isAdded=false
+      this.cartService.removeBook(this.book);
+  }  
 
 }
