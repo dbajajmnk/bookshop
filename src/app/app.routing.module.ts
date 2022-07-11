@@ -16,6 +16,6 @@ const routes:Routes=[{path:"", component:BooksComponent},
 
 
 export class AppRoutingModule{
-    routes:Routes[]=[];
+   
 
 }
