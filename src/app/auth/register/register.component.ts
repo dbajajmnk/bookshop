@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import RegistrationForm from 'src/app/model/registrationform';
 
 @Component({
   selector: 'app-register',
@@ -6,12 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  eamil:string="";
-  password:string="";
-  confirmpassword:string="";
+
+  registrationForm:RegistrationForm={email:"",
+  password:"",
+  confirmPassword:""
+}
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  sumbitRegistration(){
+    console.log(this.registrationForm);
   }
 
 }
