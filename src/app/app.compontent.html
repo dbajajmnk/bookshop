@@ -8,8 +8,14 @@
     <div>
        
         <a class= "mx-4" routerLink="/cart">My Cart</a>
+        <ng-container *ngIf="!isAuthnicated()">
         <a class="mx-4"  routerLink ="/login">Login</a>
         <a class="mx-4" routerLink="/register">Register</a>
+    </ng-container>
+    <ng-container *ngIf="isAuthnicated()">
+        <button class="p-4">Logout</button>
+    </ng-container>
+        
     </div>
 </nav>
 <div class="container p-4">

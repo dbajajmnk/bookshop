@@ -24,7 +24,11 @@
             Confirm Password field must be valid
         </div>
         <div class="my-5 w-full">
-            <input type="submit" [disabled]="registrationform.form.invalid" class="w-full p-2 bg-orange-600 text-white rounded hover:bg-orange-900">
+            <button type="submit" [disabled]="registrationform.form.invalid" class="w-full p-2 bg-orange-600 text-white rounded hover:bg-orange-900">
+                <ng-container *ngIf="isLoading()">Loadding...</ng-container>
+                <ng-container *ngIf="!isLoading()">Submit</ng-container>
+                
+            </button>
         </div>
     </form>
     </div>

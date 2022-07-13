@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import RegistrationForm from 'src/app/model/registrationform';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,13 +13,22 @@ export class RegisterComponent implements OnInit {
   password:"",
   confirmPassword:""
 }
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
   }
 
   sumbitRegistration(){
-    console.log(this.registrationForm);
+    if(this.authService.isLoading)
+    {
+      return;
+    }
+    this.authService.register(this.registrationForm)
   }
+  isLoading():Boolean
+  {
+    return this.authService.isLoading
+  }
+
 
 }
