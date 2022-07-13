@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import LoginForm from '../model/lgoinform';
 import RegistrationForm from '../model/registrationform';
@@ -11,6 +12,7 @@ export class AuthService {
   isLoading:Boolean=false;
   isAuthnicated:Boolean=false;
   passwordisMatched:Boolean=true;
+  
 
   register(registration:RegistrationForm)
   {
@@ -25,7 +27,7 @@ export class AuthService {
     const auth = getAuth();
 createUserWithEmailAndPassword(auth,registration.email, registration.password)
   .then((userCredential) => {
-   
+    this.router.navigate(['login'])
     // ...
   })
   .catch((error) => {
@@ -44,9 +46,10 @@ createUserWithEmailAndPassword(auth,registration.email, registration.password)
 signInWithEmailAndPassword(auth, lgoinform.email, lgoinform.password)
   .then((userCredential) => {
     // Signed in 
-    const user = userCredential.user;
+   
     this.isAuthnicated=true
-    alert("Login Successfully")
+    this.router.navigate([''])
+    
     // ...
   })
   .catch((error) => {
@@ -62,11 +65,13 @@ signInWithEmailAndPassword(auth, lgoinform.email, lgoinform.password)
   {
     const auth = getAuth();
     signOut(auth).then(() => {
-      // Sign-out successful.
+      this.isAuthnicated=false;
+      this.router.navigate(["login"])
     }).catch((error) => {
       // An error happened.
     });
   }
 
-  constructor() { }
+  constructor(private router:Router) 
+  { }
 }

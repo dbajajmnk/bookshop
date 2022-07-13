@@ -22,5 +22,9 @@ export class AppCompontnet implements OnInit{
     {
         return this.authService.isAuthnicated
     }
+    logout()
+    {
+        this.authService.logout()
+    }
 
 }
